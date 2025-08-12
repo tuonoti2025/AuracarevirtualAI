@@ -1,482 +1,155 @@
-.demo-container {
-  background-color: #eaf6eb;
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  text-align: center;
+:root{
+  --bg: #ecf8ef;
+  --card: #fff;
+  --shadow: 0 14px 50px rgba(0,0,0,.08);
+  --phone-w: 340px;           /* >> pienempi puhelin */
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
 }
 
-.header {
-  margin-bottom: 20px;
+/* Perus */
+.demo-container{
+  background: var(--bg);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:#122;
+  padding: 28px 18px 64px;
+}
+.header{ text-align:center; margin-bottom: 12px;}
+.header .logo{ width:84px; display:block; margin:0 auto 6px; }
+.header h2{ margin:0; font-size: 22px; font-weight:700; }
+
+/* Kolmi-palstainen asettelu */
+.content{
+  display:grid;
+  grid-template-columns: minmax(420px,1fr) var(--phone-w) 420px;
+  gap: 36px;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.logo {
-  width: 80px;
+/* Vasen teksti – tiiviimpi */
+.left h3{ font-size: 26px; margin: 4px 0 10px; }
+.left ul{ margin:0; padding-left: 22px; }
+.left li{
+  margin: 10px 0;
+  line-height: 1.35;
+  font-size: 16px;
 }
 
-.content {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  gap: 20px;
+/* Puhelin keskellä */
+.middle{ display:flex; justify-content:center; }
+.phone-frame{
+  width: var(--phone-w);
+  height: calc(var(--phone-w) * 1.85);
+  background: var(--card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  position:relative;
+}
+.phone-header{
+  text-align:center;
+  font-weight:700;
+  font-size: 13px;
+  padding: 10px 8px;
+}
+.video{
+  width:100%;
+  height: calc(100% - 38px);
+  object-fit: cover;
+  display: block;
 }
 
-.left, .middle, .right {
-  flex: 1;
-  padding: 10px;
+/* Oikea palsta */
+.right .panel-card{
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 12px 16px;
 }
-
-.phone-frame {
-  background-color: white;
-  padding: 10px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  max-width: 250px;
-  margin: auto;
-  position: relative;
-}
-
-.phone-header {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.profile-pic {
-  width: 100%;
-  border-radius: 15px;
-}
-
-.hilma-image {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 50px;
-  border-radius: 50%;
-  border: 2px solid white;
-}
-
-.buttons {
-  margin-top: 10px;
-}
-
-.btn {
-  margin: 5px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-}
-
-.btn.red {
-  background-color: #e74c3c;
-}
-
-.btn.blue {
-  background-color: #3498db;
-}
-
-.btn.green {
-  background-color: #27ae60;
-}
-/* ===== OVERRIDES: Miksi AuraCare? isoksi ja väljäksi ===== */
-.left {
-  max-width: 900px !important;
-  text-align: left !important;
-  hyphens: none !important;
-  word-break: normal !important;
-  overflow-wrap: normal !important;
-}
-
-.left h3 {
-  font-size: 40px !important;
-  line-height: 1.2 !important;
-  margin: 0 0 20px 0 !important;
-}
-
-/* käytä omia bulletteja -> tasainen ulkoasu */
-.left ul.benefits {
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.left ul.benefits li {
-  position: relative;
-  padding-left: 1.6em;
-  font-size: 24px !important;
-  line-height: 1.9 !important;
-  margin: 0 0 18px 0 !important;
-  letter-spacing: 0.2px;
-}
-
-.left ul.benefits li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  top: .05em;
-  font-size: 1.6em;
-  line-height: 1;
-  color: #16a34a;
-  font-weight: 700;
-}
-
-.left ul.benefits li strong { font-weight: 800 !important; }
-
-/* isolla näytöllä vielä astetta isompi */
-@media (min-width: 1400px) {
-  .left h3 { font-size: 44px !important; }
-  .left ul.benefits li { font-size: 26px !important; }
-}
-/* === Balanssi: pienempi teksti vasemmalla + isompi puhelin === */
-
-/* Puhelin vähän suuremmaksi, responsiivisesti */
-.phone-frame {
-  max-width: clamp(340px, 30vw, 520px) !important; /* ennen 320/28vw/480 */
-}
-
-/* Otsikko vähän pienemmäksi */
-.left h3 {
-  font-size: 32px !important;      /* ennen 40+ */
-  margin-bottom: 14px !important;
-}
-
-/* Listan teksti kompaktimmaksi ja ilmavaksi */
-.left ul.benefits li {
-  font-size: 20px !important;       /* ennen 24+ */
-  line-height: 1.75 !important;
-  margin: 0 0 12px 0 !important;
-}
-
-/* Bullet ei liian dominantti */
-.left ul.benefits li::before {
-  font-size: 1.25em !important;     /* ennen 1.6em */
-}
-
-/* Isolla näytöllä pieni nosto, ettei jää liian pieneksi */
-@media (min-width: 1400px) {
-  .left h3 { font-size: 34px !important; }
-  .left ul.benefits li { font-size: 21px !important; }
-}
-/* === Mobiili-fix: pienempi puhelin ja napit mahtuu ilman rullausta === */
-@media (max-width: 768px) {
-  .phone-frame {
-    max-width: clamp(300px, 72vw, 420px) !important; /* hieman pienempi tabletilla/puhelimella */
-  }
-}
-
-@media (max-width: 520px) {
-  .phone-frame {
-    max-width: 88vw !important;     /* kapeilla näytöillä lähes koko leveys */
-    margin-top: 6px;
-  }
-  .play-controls {
-    margin-top: 8px;
-  }
-  .play-controls .btn {
-    min-width: 120px;
-    padding: 8px 12px;
-    font-size: 14px;                 /* napit pienemmiksi jotta mahtuvat */
-  }
-  .header { margin-bottom: 12px; }
-  .demo-container { padding-top: 12px; }
-}
-/* === Mobiili pystysuunnassa: pienempi puhelin + napit mahtuu ilman rullausta === */
-@media (max-width: 520px) and (orientation: portrait) {
-  .phone-frame {
-    max-width: 74vw !important;   /* pienennys (tarvittaessa säädä 70–78vw) */
-    padding: 8px;
-    border-radius: 16px;
-  }
-
-  .phone-header {                 /* header vähän kompaktimmaksi */
-    font-size: 10px;
-    margin-bottom: 6px;
-  }
-
-  .notch { display: none; }       /* säästetään pystykorkeutta */
-  .call-chip { top: 10px; left: 10px; padding: 4px 8px; font-size: 9px; }
-
-  .profile-pic {
-    aspect-ratio: 9 / 16;         /* varmistaa, että korkeus skaalautuu leveydestä */
-    border-radius: 12px;
-  }
-
-  .play-controls {
-    margin-top: 6px;
-  }
-  .play-controls .btn {
-    min-width: 120px;
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-
-  /* pieni yleissiistintä ylä/alarajoihin */
-  .header { margin-bottom: 10px; }
-  .demo-container { padding-top: 10px; padding-bottom: 10px; }
-}
-/* === Logo hieman isommaksi === */
-.logo {
-  width: clamp(96px, 7vw, 130px) !important;
-}
-
-/* === Puhelin pienempi leveydeltä ja sopivan korkuinen === */
-.phone-frame {
-  max-width: clamp(340px, 24vw, 440px) !important; /* oli isompi, nyt maltillinen */
-}
-
-/* Rajoita videon korkeus, jotta napit mahtuvat näkyviin ilman rullausta */
-.profile-pic {
-  width: 100% !important;
-  height: min(62vh, 760px) !important;  /* enintään ~62% näytön korkeudesta */
-  object-fit: cover !important;
-  border-radius: 15px;
-}
-
-/* Pieni viila napeille */
-.play-controls { margin-top: 8px !important; }
-
-/* Kun näyttö on hiukan korkeampi, voidaan kasvattaa videota aavistus */
-@media (min-height: 900px) {
-  .profile-pic { height: min(66vh, 820px) !important; }
-}
-
-/* Mobiili / kapea näyttö – pidetään kompaktina */
-@media (max-width: 520px) {
-  .phone-frame { max-width: 82vw !important; }
-  .profile-pic  { height: 56vh !important; }
-}
-/* Aktiivinen muistutusnappi: kevyt korostus */
-.btn.active {
-  outline: 2px solid rgba(0,0,0,.45);
-  outline-offset: 2px;
-  filter: saturate(1.1);
-  transform: translateY(-1px);
-}
-
-/* Chip-teksti puhelimen kulmaan (jos ei vielä ole) */
-.call-chip {
-  position: absolute;
-  top: 14px; left: 14px;
-  background: rgba(17,24,39,0.85);
-  color: #fff;
-  font-size: 10px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  backdrop-filter: blur(2px);
-  z-index: 3;
-}
-/* ✕-painike puhelimen kulmassa */
-.close-call{
-  position:absolute; top:10px; right:10px;
-  background: rgba(0,0,0,.6); color:#fff; border:0;
-  width:28px; height:28px; border-radius:999px; cursor:pointer;
-  line-height:28px; text-align:center; font-size:16px;
-}
-.close-call:hover{ background: rgba(0,0,0,.75); }
-
-/* Harmaa Stop-nappi */
-.btn.gray{ background:#6b7280; }         /* neutral */
-.btn:disabled{ opacity:.6; cursor:not-allowed; }
-/* --- Hallintapaneeli: värit ja modaali --- */
-.btn.purple { background: #7c3aed; }     /* violetti "Asetukset" */
-.modal-backdrop{
-  position: fixed; inset: 0; background: rgba(0,0,0,.35);
-  display: flex; align-items: center; justify-content: center; z-index: 50;
-}
-.modal-card{
-  width: min(920px, 92vw);
-  background: #fff; border-radius: 16px; padding: 16px 16px 12px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.15);
-}
-.modal-header{
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 8px;
-}
-.modal-header h4{ margin: 0; font-size: 20px; }
-.modal-close{
-  border: 0; background: #111827; color: #fff; width: 28px; height: 28px;
-  border-radius: 999px; cursor: pointer;
-}
-.pane-section{ margin: 14px 0; }
-.section-title{
-  display: inline-block; padding: 6px 10px; border-radius: 999px; color: #fff;
-  font-weight: 700; font-size: 12px; margin-bottom: 8px;
-}
-.section-title.red{ background: #ef4444; }
-.section-title.blue{ background: #3b82f6; }
-.section-title.purple{ background: #7c3aed; }
-
-.pane-table{ width: 100%; border-collapse: collapse; }
-.pane-table th, .pane-table td{ border-bottom: 1px solid #e5e7eb; padding: 8px; }
-.pane-table th{ text-align: left; font-size: 12px; color: #374151; }
-.pane-table td input[type="time"],
-.pane-table td input[type="text"],
-.pane-table td input[type="number"]{
-  width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid #d1d5db;
-  border-radius: 8px; font-size: 14px;
-}
-.pane-table td.center{ text-align: center; }
-.pane-table td.right{ text-align: right; }
-
-.tiny{
-  background: #111827; color: #fff; border: 0; border-radius: 8px;
-  padding: 6px 10px; cursor: pointer; font-size: 12px; margin-top: 8px;
-}
-.tiny.danger{ background: #b91c1c; }
-.modal-actions{ display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
-
-.grid.two{
-  display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px;
-}
-.grid.two label{
-  display: grid; grid-template-columns: 1fr; gap: 6px; font-size: 14px;
-}
-
-@media (max-width: 640px){
-  .modal-card{ width: 96vw; padding: 12px; }
-  .grid.two{ grid-template-columns: 1fr; }
-}
-/* violetti nappi */
-.btn.purple { background: #7c3aed; }
-
-/* --- Dashboard / Modal --- */
-.modal-backdrop{
-  position: fixed; inset: 0; background: rgba(0,0,0,.35);
-  display: flex; align-items: center; justify-content: center; z-index: 50;
-}
-.modal-card{
-  width: min(980px, 94vw);
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 14px 14px 10px;
-  box-shadow: 0 24px 48px rgba(0,0,0,.15);
-}
-.modal-header{
-  display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center;
-  margin-bottom: 8px;
-}
-.modal-header h4{ margin:0; font-size:18px; }
-.modal-close{
-  border: 0; background: #111827; color:#fff; width: 28px; height:28px;
-  border-radius: 999px; cursor: pointer;
-}
-.saved-chip{
-  background:#16a34a; color:#fff; font-size:12px; padding:4px 8px; border-radius:999px;
-}
-.tabs{ display:flex; gap:6px; margin-bottom:10px; }
-.tab{
-  background:#f3f4f6; border:1px solid #e5e7eb; padding:8px 12px; border-radius:10px;
-  cursor:pointer; font-weight:600;
-}
-.tab.active{ background:#111827; color:#fff; border-color:#111827; }
-
-.pane{ max-height: 62vh; overflow:auto; padding: 2px 2px 8px; }
-.section-title{
-  display:inline-block; padding:6px 10px; border-radius:999px; color:#fff;
-  font-weight:700; font-size:12px; margin-bottom:8px;
-}
-.section-title.red{ background:#ef4444; }
-.section-title.blue{ background:#3b82f6; }
-.section-title.purple{ background:#7c3aed; }
-.section-title.slate{ background:#334155; }
-
-.pane-table{ width:100%; border-collapse: collapse; }
-.pane-table th, .pane-table td{ border-bottom:1px solid #e5e7eb; padding:8px; }
-.pane-table th{ text-align:left; font-size:12px; color:#374151; }
-
-.pane-table td input[type="time"],
-.pane-table td input[type="text"],
-.pane-table td input[type="number"],
-.pane-table td select{
-  width:100%; box-sizing:border-box; padding:6px 8px; border:1px solid #d1d5db;
-  border-radius:8px; font-size:14px;
-}
-.pane-table td.center{ text-align:center; }
-.pane-table td.right{ text-align:right; }
-
-.tiny{
-  background:#111827; color:#fff; border:0; border-radius:8px;
-  padding:6px 10px; cursor:pointer; font-size:12px; margin-top:8px;
-}
-.tiny.danger{ background:#b91c1c; }
-
-.inline-actions{ display:flex; gap:8px; margin-top:8px; }
-
-.modal-actions{
-  display:flex; justify-content:flex-end; gap:8px; margin-top:10px;
-}
-
-@media (max-width: 640px){
-  .modal-card{ width:96vw; padding:12px; }
-  .pane{ max-height: 68vh; }
-}
-/* Iloinen kuvauskortti oikeaan palstaan */
-.panel-card{
-  margin: 10px 0 12px;
-  padding: 12px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #f0fdf4 0%, #eef2ff 100%);
-  box-shadow: 0 6px 16px rgba(0,0,0,.06);
-  border: 1px solid rgba(0,0,0,.05);
-}
-.panel-title{
-  font-weight: 800;
-  letter-spacing: .2px;
-  margin-bottom: 8px;
-}
-
-/* Värikkäät tägit */
-.panel-tags{ display: flex; flex-wrap: wrap; gap: 8px; }
-.tag{
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 6px 10px; border-radius: 999px; font-size: 12px;
-  color: #fff; user-select: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,.08);
-}
-.tag.red    { background:#ef4444; }
-.tag.blue   { background:#3b82f6; }
-.tag.green  { background:#22c55e; }
-.tag.purple { background:#7c3aed; }
-.tag.amber  { background:#f59e0b; }
-.tag.slate  { background:#334155; }
-
-@media (max-width: 640px){
-  .panel-card { padding: 10px; }
-  .tag{ font-size: 11px; padding: 5px 8px; }
-}
-/* Kompakti info-kortti */
-.panel-card.compact{
-  margin: 10px 0 12px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 6px 16px rgba(0,0,0,.05);
-}
-.panel-title{ font-weight: 800; margin-bottom: 8px; }
-
-.panel-list{
-  list-style: none; padding: 0; margin: 0 0 6px 0;
-  display: grid; gap: 6px;
-  font-size: 14px; line-height: 1.35;
-}
-.panel-list .dot{
-  display: inline-block; width: 10px; height: 10px; border-radius: 999px;
-  margin-right: 8px; transform: translateY(1px);
-}
-.dot.red{ background:#ef4444; }
-.dot.blue{ background:#3b82f6; }
-.dot.purple{ background:#7c3aed; }
-.dot.green{ background:#22c55e; }
-.dot.slate{ background:#334155; }
-
+.panel-title{ font-weight:700; margin-bottom: 6px; }
+.panel-list{ margin: 6px 0 10px 18px; }
 .panel-link{
-  border: 0; background: transparent; color: #2563eb;
-  font-weight: 700; cursor: pointer; padding: 4px 0 0;
+  display:inline-block;
+  margin-top: 2px;
+  text-decoration: none;
+  color: #1463ff;
 }
 .panel-link:hover{ text-decoration: underline; }
 
-@media (max-width: 640px){
-  .panel-card.compact{ padding: 10px 12px; }
-  .panel-list{ font-size: 13px; }
+/* Nappirivi oikealla */
+.action-row{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.btn{
+  border: 0;
+  border-radius: 22px;
+  padding: 10px 14px;
+  color:#fff;
+  cursor:pointer;
+  font-weight:600;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.btn.green{ background:#28a745; }
+.btn.red{   background:#e74c3c; }
+.btn.blue{  background:#3498db; }
+.btn.gray{  background:#6c757d; }
+
+/* Info-chip videon yläkulmassa */
+.badge{
+  position:absolute;
+  top:10px; left:10px;
+  background:#111a;
+  color:#fff;
+  padding:3px 8px;
+  border-radius: 10px;
+  font-size:12px;
+}
+
+/* Modaali */
+.modal{ position:fixed; inset:0; z-index: 1000; }
+.modal-backdrop{ position:absolute; inset:0; background: rgba(0,0,0,.35); }
+.modal-card{
+  position:relative;
+  z-index:1001;
+  width:min(760px, 92vw);
+  margin: 12vh auto 0;
+  background:#fff;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 16px 18px 18px;
+}
+.modal-header{
+  display:flex; align-items:center; justify-content:space-between;
+  font-weight:700; margin-bottom: 8px;
+}
+.modal-close{
+  border:0; background:#eee; border-radius: 10px; padding:6px 10px; cursor:pointer;
+}
+
+/* Vastaanotto eri leveysnäytöissä */
+@media (max-width: 1200px){
+  :root{ --phone-w: 310px; }
+  .content{
+    grid-template-columns: 1fr var(--phone-w);
+    grid-template-areas:
+      "left middle"
+      "right right";
+  }
+  .right{ grid-column: 1 / -1; }
+  .action-row{ justify-content: flex-start; }
+}
+@media (max-width: 860px){
+  :root{ --phone-w: 290px; }
+  .content{
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .middle{ justify-content:flex-start; }
 }
