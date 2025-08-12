@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/AuracarevirtualAI/static/css/main.152774ad.css",
-    "main.js": "/AuracarevirtualAI/static/js/main.982fdfde.js",
+    "main.css": "/AuracarevirtualAI/static/css/main.b982f557.css",
+    "main.js": "/AuracarevirtualAI/static/js/main.b682e71d.js",
     "static/js/453.c3386cce.chunk.js": "/AuracarevirtualAI/static/js/453.c3386cce.chunk.js",
     "index.html": "/AuracarevirtualAI/index.html",
-    "main.152774ad.css.map": "/AuracarevirtualAI/static/css/main.152774ad.css.map",
-    "main.982fdfde.js.map": "/AuracarevirtualAI/static/js/main.982fdfde.js.map",
+    "main.b982f557.css.map": "/AuracarevirtualAI/static/css/main.b982f557.css.map",
+    "main.b682e71d.js.map": "/AuracarevirtualAI/static/js/main.b682e71d.js.map",
     "453.c3386cce.chunk.js.map": "/AuracarevirtualAI/static/js/453.c3386cce.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.152774ad.css",
-    "static/js/main.982fdfde.js"
+    "static/css/main.b982f557.css",
+    "static/js/main.b682e71d.js"
   ]
 }
