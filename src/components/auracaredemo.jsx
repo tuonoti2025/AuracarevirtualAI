@@ -1,6 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './auracaredemo.css';
 
+// GH Pages -ystävälliset polut
+const MEDIA = process.env.PUBLIC_URL + '/media/';
+
+const VIDEO = {
+  live:  MEDIA + 'Auracaredemo.mp4',
+  meds:  MEDIA + 'Laakemuistutus.mp4',
+  drink: MEDIA + 'Juomamuistutus.mp4',
+};
+
+const ALT = {
+  meds:  MEDIA + encodeURIComponent('Lääkemuistutus.mp4'),
+  drink: MEDIA + encodeURIComponent('Juomamuistutus.mp4'),
+};
+
+const LOGO = process.env.PUBLIC_URL + '/logo.png';
+
+
 /* ---------------------- Asetukset + apurit ---------------------- */
 
 const DEFAULTS = {
@@ -298,7 +315,8 @@ export default function AuraCareDemo() {
     <div className="demo-container">
       {/* Ylätunniste */}
       <div className="header">
-        <img src="/logo.png" alt="Logo" className="logo" />
+        <img src={LOGO} alt="Logo" className="logo" />
+
         <h2>AuraCare – Virtuaaliavustaja ikäihmisille</h2>
       </div>
 
