@@ -14,11 +14,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
+
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -40,5 +41,6 @@
   "devDependencies": {
     "gh-pages": "^6.3.0"
   },
-  "homepage": "https://tuonoti2025.github.io/AuracarevirtualAI"
+  "homepage": "https://tuonoti2025.github.io/AuracarevirtualAI",
+
 }
