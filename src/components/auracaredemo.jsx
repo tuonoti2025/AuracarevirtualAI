@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
 import './ui/auracaredemo.css';
 
-// Timo & Hilma -äänitiedostot
+const BASE = process.env.PUBLIC_URL + "/audio/";
+
 const timoHilmaAudio = [
-  "/audio/1timo.mp3",
-  "/audio/2hilma.mp3",
-  "/audio/3timo.mp3",
-  "/audio/4hilma.mp3",
-  "/audio/5timo.mp3",
-  "/audio/6hilma.mp3",
-  "/audio/7timo.mp3",
-  "/audio/8hilma.mp3",
-  "/audio/9timo.mp3",
-  "/audio/10hilma.mp3"
+  BASE + "1timo.mp3",
+  BASE + "2hilma.mp3",
+  BASE + "3timo.mp3",
+  BASE + "4hilma.mp3",
+  BASE + "5timo.mp3",
+  BASE + "6hilma.mp3",
+  BASE + "7timo.mp3",
+  BASE + "8hilma.mp3",
+  BASE + "9timo.mp3",
+  BASE + "10hilma.mp3",
 ];
 
 // Lääkemuistutus-äänitiedostot
+const BASE = process.env.PUBLIC_URL + "/audio/";
 const laakemuistutusAudio = [
-  "/audio/1l_timo.mp3",
-  "/audio/2l_hilma.mp3",
-  "/audio/3l_timo.mp3",
-  "/audio/4l_hilma.mp3",
-  "/audio/5l_timo.mp3",
-  "/audio/6l_timo.mp3",
-  "/audio/7l_hilma.mp3"
+  BASE + "1l_timo.mp3",
+  BASE + "2l_hilma.mp3",
+  BASE + "3l_timo.mp3",
+  BASE + "4l_hilma.mp3",
+  BASE + "5l_timo.mp3",
+  BASE + "6l_timo.mp3",
+  BASE + "7l_hilma.mp3",
 ];
 
 const AuraCareDemo = () => {
