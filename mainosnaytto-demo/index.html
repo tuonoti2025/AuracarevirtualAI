@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17282b">
+<title>Mainosnäyttö – 6 sekunnin demo</title>
+<style>
+:root{font-family:Arial,Helvetica,sans-serif;color:#fff;background:#101b21}
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden}
+#stage{position:relative;width:100vw;height:100vh;overflow:hidden;background:#14232a;isolation:isolate}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .48s ease,visibility .48s;display:flex;align-items:center;padding:7.5vw 8vw;overflow:hidden}
+.slide.on{opacity:1;visibility:visible;z-index:1}
+.slide::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 83% 45%,rgba(255,255,255,.15),transparent 34%),linear-gradient(102deg,rgba(0,0,0,.32),transparent 78%);pointer-events:none}
+.slide::after{content:"";position:absolute;width:51vw;height:51vw;right:-13vw;top:-20vw;border:1.8vw solid rgba(255,255,255,.065);border-radius:50%;pointer-events:none}
+.slide.one{background:#173f3b;background:linear-gradient(112deg,#102d2c 2%,#20574a 56%,#69855b 145%)}
+.slide.two{background:#6b3827;background:linear-gradient(110deg,#512919 3%,#9a552e 63%,#d1a15a 140%)}
+.slide.three{background:#51354c;background:linear-gradient(115deg,#382537 0%,#77495c 62%,#c18b8b 145%)}
+.slide.four{background:#1e4250;background:linear-gradient(115deg,#122d3c 0%,#306a75 60%,#a1a976 150%)}
+.content{position:relative;z-index:2;width:66%;max-width:1050px}
+.kicker{font-size:clamp(14px,1.46vw,28px);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#f8e7bd;margin:0 0 3vh}
+h1{font-size:clamp(52px,7.2vw,156px);line-height:.98;font-weight:900;letter-spacing:-.055em;text-transform:uppercase;margin:0 0 3.5vh;text-shadow:0 10px 38px rgba(0,0,0,.14)}
+.subtitle{font-size:clamp(23px,2.7vw,54px);font-weight:400;line-height:1.21;max-width:790px;margin:0;color:#fff4de}
+.rule{height:5px;width:90px;background:#fbd899;margin:0 0 3.7vh;border-radius:5px}
+.art{position:absolute;z-index:1;right:3.2vw;top:50%;transform:translateY(-50%);width:39vw;height:39vw;max-height:78vh;max-width:78vh;min-width:220px;min-height:220px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.25),rgba(255,255,255,.07) 42%,rgba(255,255,255,.02) 72%);border:2px solid rgba(255,255,255,.19);box-shadow:0 24px 100px rgba(0,0,0,.16),inset 0 0 0 24px rgba(255,255,255,.035)}
+.art span{font-family:'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;font-size:clamp(112px,18vw,320px);filter:drop-shadow(0 18px 18px rgba(0,0,0,.21));transform:rotate(-11deg);line-height:1}
+.signature{position:absolute;z-index:3;bottom:3.8vh;left:8vw;color:rgba(255,255,255,.75);font-size:clamp(12px,1.1vw,20px);font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.progress{position:absolute;z-index:6;left:0;bottom:0;width:100%;height:5px;background:rgba(255,255,255,.17)}
+#progressFill{height:100%;width:0;background:#ffe0a0}
+#settingsBtn{position:absolute;right:20px;top:20px;z-index:15;width:54px;height:54px;border:1px solid rgba(255,255,255,.3);background:rgba(4,22,30,.3);color:white;border-radius:50%;font-size:24px;cursor:pointer;opacity:.35}
+#settingsBtn:hover,#settingsBtn:focus{opacity:1;background:#1d3642}
+#panel{position:absolute;top:85px;right:20px;z-index:16;background:rgba(10,23,29,.97);border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:20px;width:300px;max-width:calc(100vw - 40px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+#panel[hidden]{display:none}#panel h2{font-size:20px;margin:0 0 16px}#panel p{font-size:13px;color:#cad6d9;line-height:1.5;margin:12px 0 0}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}button.control{padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:#28404c;color:#fff;cursor:pointer;font-size:14px;min-width:48px}
+button.control.active{background:#f7dfb2;color:#142b34;border-color:#f7dfb2;font-weight:700}
+#panel label{font-size:13px;display:block;color:#d9e8e7;margin-top:12px}
+#status{font-size:13px;margin-top:13px;color:#f1dcab}
+@media (max-width:650px){.slide{padding:9vw 8vw 20vw;align-items:flex-start;justify-content:center;flex-direction:column}.content{width:100%;margin-top:18vh}h1{font-size:clamp(52px,12vw,82px)}.subtitle{font-size:clamp(19px,5.3vw,31px)}.kicker{font-size:13px}.art{width:53vw;height:53vw;min-height:unset;min-width:unset;top:22%;right:3%;opacity:.5}.art span{font-size:25vw}.signature{bottom:6vh}}
+@media (prefers-reduced-motion:reduce){.slide{transition:none}}
+</style>
+</head>
+<body>
+<main id="stage" aria-label="Automaattinen mainosesitys">
+<section class="slide one on" aria-label="Mainos 1"><div class="content"><p class="kicker">Kahvila · mainosesimerkki</p><div class="rule"></div><h1>TÄNÄÄN<br>LOUNAALLA</h1><p class="subtitle">Hyvää ruokaa ja lämmin tauko päivään.</p></div><div class="art" aria-hidden="true"><span>🍽️</span></div><div class="signature">Infonäyttö · testi</div></section>
+<section class="slide two" aria-label="Mainos 2"><div class="content"><p class="kicker">Leipomo · mainosesimerkki</p><div class="rule"></div><h1>UUNI­TUORET<br>LEIVÄT</h1><p class="subtitle">Nappaa tuoreet leivät mukaan.</p></div><div class="art" aria-hidden="true"><span>🥖</span></div><div class="signature">Infonäyttö · testi</div></section>
+<section class="slide three" aria-label="Mainos 3"><div class="content"><p class="kicker">Leipomo · mainosesimerkki</p><div class="rule"></div><h1>KAKUT<br>JA HERKUT</h1><p class="subtitle">Makeaa arkeen ja juhlaan.</p></div><div class="art" aria-hidden="true"><span>🍰</span></div><div class="signature">Infonäyttö · testi</div></section>
+<section class="slide four" aria-label="Mainos 4"><div class="content"><p class="kicker">Kahvila · mainosesimerkki</p><div class="rule"></div><h1>AAMU­KAHVILLE</h1><p class="subtitle">Aloita päivä rauhallisella kahvihetkellä.</p></div><div class="art" aria-hidden="true"><span>☕</span></div><div class="signature">Infonäyttö · testi</div></section>
+<div class="progress" aria-hidden="true"><div id="progressFill"></div></div>
+<button id="settingsBtn" type="button" title="Avaa asetukset" aria-label="Avaa asetukset">⚙</button>
+<aside id="panel" hidden><h2>Esityksen asetukset</h2><label>Yhden mainoksen kesto</label><div class="controls" id="speedControls"><button class="control" data-seconds="4">4 s</button><button class="control active" data-seconds="6">6 s</button><button class="control" data-seconds="10">10 s</button><button class="control" data-seconds="15">15 s</button></div><div class="controls"><button class="control" id="prevBtn">◀ Edellinen</button><button class="control" id="playBtn">❚❚ Tauko</button><button class="control" id="nextBtn">Seuraava ▶</button></div><div class="controls"><button class="control" id="fullscreenBtn">⛶ Koko näyttö</button><button class="control" id="closeBtn">Sulje</button></div><div id="status" aria-live="polite">Mainos 1 / 4</div><p>Aukeaa suoraan selaimessa, eikä vaadi sovellusta tai kirjautumista. Asetukset ovat tällä laitteella; sisältö on esimerkki.</p></aside>
+</main>
+<script>
+(function(){
+'use strict';
+var slides=document.querySelectorAll('.slide');var index=0,seconds=6,playing=true,started=Date.now();
+var fill=document.getElementById('progressFill'),panel=document.getElementById('panel'),status=document.getElementById('status'),play=document.getElementById('playBtn');
+var query=window.location.search.match(/[?&]seconds=(4|6|10|15)(?:&|$)/);if(query)seconds=Number(query[1]);
+function show(n){index=(n+slides.length)%slides.length;for(var i=0;i<slides.length;i++){var active=i===index;slides[i].className=slides[i].className.replace(/\s+on\b/g,'')+(active?' on':'');slides[i].setAttribute('aria-hidden',active?'false':'true')}started=Date.now();status.textContent='Mainos '+(index+1)+' / '+slides.length;fill.style.width='0%'}
+function tick(){if(!playing)return;var elapsed=Date.now()-started;if(elapsed>=seconds*1000){show(index+1);elapsed=0}fill.style.width=Math.min(100,elapsed/(seconds*1000)*100)+'%'}
+function updateSpeed(){var buttons=document.querySelectorAll('[data-seconds]');for(var i=0;i<buttons.length;i++)buttons[i].className='control'+(Number(buttons[i].getAttribute('data-seconds'))===seconds?' active':'')}
+var speeds=document.querySelectorAll('[data-seconds]');for(var i=0;i<speeds.length;i++)speeds[i].onclick=function(){seconds=Number(this.getAttribute('data-seconds'));started=Date.now();updateSpeed()};
+function togglePlay(){playing=!playing;play.textContent=playing?'❚❚ Tauko':'▶ Jatka';if(playing)started=Date.now();}
+document.getElementById('settingsBtn').onclick=function(){panel.hidden=!panel.hidden};document.getElementById('closeBtn').onclick=function(){panel.hidden=true};document.getElementById('prevBtn').onclick=function(){show(index-1)};document.getElementById('nextBtn').onclick=function(){show(index+1)};play.onclick=togglePlay;
+document.getElementById('fullscreenBtn').onclick=function(){var target=document.documentElement;if(document.fullscreenElement&&document.exitFullscreen){document.exitFullscreen()}else if(target.requestFullscreen){target.requestFullscreen()}else if(target.webkitRequestFullscreen){target.webkitRequestFullscreen()}};
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){panel.hidden=true}else if(e.key==='ArrowRight'){show(index+1)}else if(e.key==='ArrowLeft'){show(index-1)}else if(e.key===' '){e.preventDefault();togglePlay()}else if(e.key==='f'||e.key==='F'){document.getElementById('fullscreenBtn').click()}else if(e.key==='s'||e.key==='S'){panel.hidden=!panel.hidden}});
+updateSpeed();show(0);setInterval(tick,80);
+})();
+</script>
+</body>
+</html>
