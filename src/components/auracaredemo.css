@@ -1,80 +1,360 @@
-.demo-container {
-  background-color: #eaf6eb;
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  text-align: center;
+:root{
+
+  --bg:#eef7f2; --card:#fff; --text:#1f2f2b; --muted:#5b7a72;
+
+  --accent:#2fa77d; --accent2:#1b7e5e; --border:#d9ebe4;
+
 }
 
-.header {
-  margin-bottom: 20px;
+
+
+/* Suoja: mikään globaali img/video-sääntö ei saa venyttää koko ruutuun */
+
+.desk-wrap img { max-width: 100%; height: auto; }
+
+.desk-wrap video { max-width: 100%; height: auto; }
+
+
+
+/* Layout */
+
+body { background: var(--bg); color: var(--text); }
+
+.desk-wrap{
+
+  max-width:1100px; margin:24px auto; padding:8px; display:grid; gap:16px;
+
+  grid-template-columns: 320px 1fr 320px;
+
 }
 
-.logo {
-  width: 80px;
+@media (max-width: 1100px){ .desk-wrap{ grid-template-columns:1fr; } }
+
+.card{
+
+  background:var(--card); border-radius:16px; padding:16px;
+
+  box-shadow:0 10px 35px rgba(0,0,0,.06); border:1px solid var(--border);
+
 }
 
-.content {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  gap: 20px;
+.left h1{ font-size:22px; margin:0 0 8px; }
+
+.left ul{ color:var(--muted); margin-left:18px; }
+
+
+
+.center .tabs{ display:flex; gap:8px; margin-bottom:10px; }
+
+.tab{ border:1px solid var(--border); background:#f5fbf8; padding:8px 10px; border-radius:10px; font-weight:600; }
+
+.tab.active{ background:#e9f7f1; border-color:#cee9dd; }
+
+.tab.ghost{ opacity:.7; }
+
+
+
+.screen{
+
+  height:520px; border-radius:16px; background:#eef7f3; border:2px solid #d6ece3;
+
+  position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden;
+
 }
 
-.left, .middle, .right {
-  flex: 1;
-  padding: 10px;
+.badge{
+
+  position:absolute; top:10px; left:10px; background:var(--accent); color:#fff;
+
+  padding:6px 10px; border-radius:999px; font-size:13px; z-index:2;
+
 }
 
-.phone-frame {
-  background-color: white;
-  padding: 10px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  max-width: 250px;
-  margin: auto;
-  position: relative;
+/* Videolle tarkka selektori (ei vaikuta muihin img/videoihin) */
+
+.screen-video{
+
+  position:relative; width:100%; height:100%;
+
+  object-fit:cover; border-radius:12px; z-index:1;
+
 }
 
-.phone-header {
-  font-weight: bold;
-  margin-bottom: 10px;
+
+
+.controls{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+
+.pill{ appearance:none; border:0; border-radius:999px; padding:10px 14px; font-weight:700; color:#fff; cursor:pointer; }
+
+.pill.live{ background:#2fa77d; }
+
+.pill.meds{ background:#e45757; }
+
+.pill.water{ background:#3a8ad4; }
+
+.pill.stop{ background:#666; }
+
+
+
+.right h2{ margin:0 0 8px; }
+
+.legend{ margin:8px 0 12px 0; color:var(--muted); }
+
+.legend li{ margin:6px 0; }
+
+.hint h3{ margin:0 0 6px; }
+
+.hint ul{ margin:6px 0 10px 18px; color:var(--muted); }
+
+.link{ background:#e9f7f1; color:#1f4b3f; border:1px solid #cee9dd; padding:8px 10px; border-radius:10px; font-weight:600; }
+
+
+
+/* Modal */
+
+.modal{ position:fixed; inset:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; z-index:100; }
+
+.modal-box{ width:min(760px,94vw); background:#fff; border-radius:16px; padding:16px; border:1px solid var(--border); box-shadow:0 16px 50px rgba(0,0,0,.2); }
+
+.settings-form fieldset{ border:1px solid var(--border); border-radius:12px; padding:12px; margin:12px 0; }
+
+.settings-form legend{ font-weight:700; padding:0 6px; }
+
+.settings-form .row{ display:flex; align-items:center; gap:10px; margin:8px 0; }
+
+.settings-form .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+.settings-form .grid-3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+
+.settings-form .col{ display:flex; flex-direction:column; gap:6px; }
+
+.settings-form input[type="time"],
+
+.settings-form input[type="number"],
+
+.settings-form input[type="text"]{ padding:8px 10px; border:1px solid #d6e6df; border-radius:10px; }
+
+.settings-form .actions-inline{ margin-top:6px; }
+
+.chips{ display:flex; flex-wrap:wrap; gap:6px; margin:6px 0; }
+
+.chip{ background:#e9f7f1; border:1px solid #cfe9dd; color:#1f4b3f; padding:4px 8px; border-radius:999px; display:inline-flex; align-items:center; gap:6px; }
+
+.chip button{ border:0; background:transparent; font-size:14px; line-height:1; cursor:pointer; }
+
+.modal-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:12px; }
+
+body {
+
+  background: radial-gradient(1100px 800px at 20% 0%, #eafaf2 0%, #def6ea 40%, #d0f0df 100%);
+
 }
 
-.profile-pic {
-  width: 100%;
-  border-radius: 15px;
+/* --- Tummemmat vihreät sivupaneelit (vasen & oikea) --- */
+
+.card.left,
+
+.card.right{
+
+  background: #1f8a6a;        /* tummempi vihreä */
+
+  border-color: #166a52;
+
+  color: #fff;                 /* valkoinen teksti */
+
 }
 
-.hilma-image {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 50px;
-  border-radius: 50%;
-  border: 2px solid white;
+
+
+/* Otsikot valkoisiksi */
+
+.card.left h1,
+
+.card.right h2,
+
+.card.right h3{
+
+  color: #fff;
+
 }
 
-.buttons {
-  margin-top: 10px;
+
+
+/* Listatekstit hieman pehmeämmiksi valkoisiksi */
+
+.card.left ul,
+
+.card.right .legend,
+
+.card.right .hint ul{
+
+  color: rgba(255,255,255,0.9);
+
 }
 
-.btn {
-  margin: 5px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
+
+
+/* Oikean puolen “Avaa käyttöpaneeli” -linkkinapin tyyli vihreälle taustalle */
+
+.card.right .link{
+
+  background: rgba(255,255,255,0.14);
+
+  color: #fff;
+
+  border-color: rgba(255,255,255,0.28);
+
 }
 
-.btn.red {
-  background-color: #e74c3c;
+.card.right .link:hover{
+
+  background: rgba(255,255,255,0.22);
+
 }
 
-.btn.blue {
-  background-color: #3498db;
+/* ====== Mobiiliresponsiivisuus ====== */
+
+
+
+/* Nimeä alueet, jotta voimme vaihtaa järjestystä mobiilissa */
+
+.desk-wrap {
+
+  grid-template-areas: "left center right";
+
 }
 
-.btn.green {
-  background-color: #27ae60;
+.card.left  { grid-area: left; }
+
+.card.center{ grid-area: center; }
+
+.card.right { grid-area: right; }
+
+
+
+/* Näytön koko ja napit sopeutuvat */
+
+.screen{
+
+  height: clamp(320px, 62vh, 560px); /* toimii myös isoilla näytöillä */
+
+}
+
+
+
+/* iOS:n lovi ym. */
+
+:root { --safe-bottom: env(safe-area-inset-bottom, 0px); }
+
+
+
+/* Alle ~960px: keskiosa ensin, sivupaneelit perään, isommat kosketusalueet */
+
+@media (max-width: 960px){
+
+  .desk-wrap{
+
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+
+      "center"
+
+      "left"
+
+      "right";
+
+    gap: 14px;
+
+  }
+
+
+
+  .screen{
+
+    height: min(62vh, 520px); /* enemmän tilaa sisällölle */
+
+  }
+
+
+
+  /* Napeista 2-sarakkeiset “laatat” */
+
+  .controls{
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    padding-bottom: calc(8px + var(--safe-bottom));
+
+  }
+
+  .controls .pill{
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    font-size: 16px;      /* isompi kosketusalue */
+
+    border-radius: 12px;
+
+  }
+
+
+
+  /* Listat luettavammiksi vihreissä sivupaneeleissa */
+
+  .card.left ul,
+
+  .card.right .legend,
+
+  .card.right .hint ul {
+
+    font-size: 15px;
+
+    line-height: 1.45;
+
+  }
+
+}
+
+
+
+/* Alle ~560px: napit täyteen leveyteen yksi kerrallaan */
+
+@media (max-width: 560px){
+
+  .controls{
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+
+/* FI/EN controls retain the original three-panel design. */
+.desk-wrap { grid-template-columns: 320px minmax(0, 1fr) 320px; }
+.card { min-width: 0; }
+.language-switch { display: flex; justify-content: flex-end; gap: 4px; margin-bottom: 8px; }
+.language-switch button { min-width: 44px; min-height: 44px; border: 1px solid var(--border); border-radius: 10px; background: #f5fbf8; color: #1f4b3f; cursor: pointer; }
+.language-switch button[aria-pressed="true"] { background: #1f8a6a; color: white; font-weight: 700; }
+.desk-wrap button:focus-visible, .modal button:focus-visible { outline: 3px solid #155dba; outline-offset: 2px; }
+.pill:disabled { opacity: .6; cursor: default; }
+.modal .pill:not(.stop):not(.meds):not(.water) { background: var(--accent2); }
+.modal-box { box-sizing: border-box; max-height: 90dvh; overflow-y: auto; }
+.settings-form input { min-width: 0; max-width: 100%; box-sizing: border-box; font: inherit; }
+.settings-form fieldset { min-width: 0; }
+.add-contact input { flex: 1; }
+.playback-error { color: #982727; line-height: 1.4; }
+@media (min-width: 961px) and (max-width: 1100px) { .desk-wrap { grid-template-columns: minmax(210px,1fr) minmax(300px,1.3fr) minmax(210px,1fr); } }
+@media (max-width: 960px) { .desk-wrap { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .settings-form .grid-2, .settings-form .grid-3 { grid-template-columns: minmax(0,1fr); } .center .tabs { flex-wrap: wrap; } .modal-actions { flex-wrap: wrap; } .card ul { padding-left: 18px; margin-left: 0; } }
+@media (min-width: 961px) {
+  .center .controls { display: grid; grid-template-columns: auto minmax(0,1fr) minmax(0,1fr) auto; gap: 6px; }
+  .center .controls .pill { min-width: 0; padding: 10px 8px; font-size: 11px; }
 }
